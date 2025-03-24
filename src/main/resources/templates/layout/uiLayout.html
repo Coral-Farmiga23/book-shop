@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html th:fragment="layout(main)" lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css?family=Raleway:100,300,500,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Questrial" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/bootstrap/css/bootstrap.min.css"
+    th:href="@{/bootstrap/css/bootstrap.min.css}">
+    <link rel="stylesheet" href="../../static/bootstrap/css/custom.css"
+    th:href="@{/bootstrap/css/custom.css}">
+</head>
+<body>
+<nav class="navbar navbar-expand-md navbar-dark">
+    <a href="#" class="navbar-brand">
+        <h3 class="mb-0">Bookie Grove</h3>
+    </a>
+    <button class="navbar-toggler" data-toggle="collapse" data-target="#mainNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="mainNavbar">
+        <ul class="navbar-nav ms-auto">
+            <li class="nav-item">
+                <a href="#showcase" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item">
+                <a href="#icons" class="nav-link">About</a>
+            </li>
+            <li class="nav-item">
+                <a href="#explore" class="nav-link">Explore</a>
+            </li>
+            <li class="nav-item">
+                <a href="#newsletter" class="nav-link">Contact</a>
+            </li>
+            <li class="nav-item">
+                <a href="#" class="nav-link" data-toggle="modal" data-target="#bookingModal">Book</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a th:href="@{/auth/product}" class="nav-link text-white">Account</a>
+            </li>
+            <li sec:authorize="!isAuthenticated()" class="nav-item">
+                <a th:href="@{/auth/login}" class="nav-link text-white">Login</a>
+            </li>
+            <li sec:authorize="isAuthenticated()" class="nav-item">
+                <a href="javascript: document.logoutForm.submit()" class="nav-link text-white">Logout</a>
+                <form th:action="@{/logout}" name="logoutForm" method="post" hidden>
+                    <input type="submit" value="Submit" hidden>
+                </form>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+<section id="showcase" class="d-flex justify-content-center align-items-center">
+    <div id="overlay"></div>
+    <div id="header" class="container text-white text-center">
+        <h3 class="display-5 mb-0">MODERN BOOKSTORE</h3>
+        <h1 class="display-1">BOOKIE GROVE</h1>
+        <p class="lead d-none d-md-block">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores, hic?</p>
+        <button id="book" class="btn btn-lg btn-primary px-5" data-toggle="modal" data-target="#bookingModal">BOOK NOW</button>
+    </div>
+</section>
+
+<div class="row">
+    <div class="col-md-9"></div>
+    <div class="col-md-3 mt-3">
+        <a th:href="@{/home/view-cart}">
+            <div>
+            <svg class="d-inline" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="48" height="48">
+                <path d="M0 0h24v24H0z" fill="none"/>
+                <path d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" fill="#000"/>
+            </svg>
+            <h1 class="d-inline ms-2"> <span class="badge text-bg-success" th:text="${cartSize}"></span></h1>
+        </div>
+        </a>
+    </div>
+</div>
+
+<div th:replace="${main}"></div>
+
+<section id="footer" class="p-3 bg-secondary">
+    <ul class="nav text-center justify-content-center flex-column flex-sm-row">
+        <li class="nav-item">
+            <a href="#" class="nav-link text-white">FAQ</a>
+        </li>
+        <li class="nav-item">
+            <a href="#explore" class="nav-link text-white">EXPERIENCE</a>
+        </li>
+        <li class="nav-item">
+            <a href="#explore" class="nav-link text-white">EXPLORE</a>
+        </li>
+        <li class="nav-item">
+            <a href="#newsletter" class="nav-link text-white">CONTACT</a>
+        </li>
+        <li class="nav-item">
+            <a href="" class="nav-link text-white" data-toggle="modal" data-target="#bookingModal">BOOK NOW</a>
+        </li>
+    </ul>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js" integrity="sha384-0pUGZvbkm6XF6gxjEnlmuGrJXVbNuzT9qBBavbLwCsOGabYfZo0T0to5eqruptLy" crossorigin="anonymous"></script>
+</body>
+</html>

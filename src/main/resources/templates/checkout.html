@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html th:replace="~{layout/uiLayout :: layout(~{::main})}" xmlns:th="http://www.thymeleaf.org">
+<body>
+<main role="main">
+    <div class="container mt-5">
+        <h1>Hello <span th:text="${registerUser.username}"></span> Your Order
+        <span th:text="${products.size()}"></span>Items</h1>
+    </div>
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <h4>Order Summary</h4>
+                    </div>
+                    <div class="card-body">
+                        <table>
+                            <thead>
+                            <tr>
+                                <th>Products</th>
+                                <th>Price</th>
+                                <th>Quantity</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="pro : ${products}">
+                                <td th:text="${pro.bookTitle}"></td>
+                                <td th:text="${pro.price}"></td>
+                                <td th:text="${pro.quantity}"></td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <h3>Total Price: <span th:text="${'$' + totalPrice}"></span></h3>
+                    </div>
+                </div>
+                <div class="col"></div>
+            </div>
+        </div>
+    </div>
+</main>
+</body>
+</html>

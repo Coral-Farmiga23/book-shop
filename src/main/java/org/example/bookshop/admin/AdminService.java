@@ -25,9 +25,17 @@ public class AdminService {
     public void saveCategory(Category category) {
         categoryDao.save(category);
     }
+
+    public List<Book> findAllBooks() {
+        return bookDao.findAll();
+    }
     
     public void saveAuthor(Author author) {
         authorDao.save(author);
+    }
+
+    public List<Author> findAllAuthors() {
+        return authorDao.findAll();
     }
     
     public void saveBook(Book book, int categoryId, int authorId) {

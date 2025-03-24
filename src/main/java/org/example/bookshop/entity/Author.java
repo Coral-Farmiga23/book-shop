@@ -1,7 +1,6 @@
 package org.example.bookshop.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -19,7 +18,7 @@ public class Author extends IdClass{
     private String authorName;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
-    private String citizenship;
+    private String citizenShip;
     @Enumerated(EnumType.STRING)
     private Gender gender;
     private String genre;
@@ -32,10 +31,10 @@ public class Author extends IdClass{
         books.add(book);
     }
 
-    public Author(String authorName, LocalDate dateOfBirth, String citizenship, Gender gender, String genre) {
+    public Author(String authorName, LocalDate dateOfBirth, String citizenShip, Gender gender, String genre) {
         this.authorName = authorName;
         this.dateOfBirth = dateOfBirth;
-        this.citizenship = citizenship;
+        this.citizenShip = citizenShip;
         this.gender = gender;
         this.genre = genre;
     }
